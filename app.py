@@ -2,6 +2,7 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 import os
+import json
 import attr
 #import enum
 from requests_toolbelt import MultipartEncoder
@@ -37,7 +38,7 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
-                    send_but(recipient_id)
+                    send_but(recipient_id,buts1)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -57,16 +58,27 @@ def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return 'Success'
 
-def send_but(recipient_id):
+def send_but(recipient_id,buts):
     '''Отправляет кнопки'''
-    buts = ["Отправь это", "это", "Круто", "КНОПКА!!"]
-    bot.send_button_message(recipient_id, "Внизу тестовая кнопка", buts)
+    bot.send_button_message(recipient_id, "В какой раздел ты бы хотел перейти?", buts)
     return 'Success'
 
 def get_message():
     '''Отправляет случайные сообщения пользователю.'''
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
+
+buts1=[
+    {
+        "type":"web_url",
+        "url":"https://www.messenger.com",
+        "title":"Перейти на сайт мессенжера"
+    },{
+        "type": "web_url",
+        "url": "https://www.youtube.com",
+        "title": "Посмотреть обучающие видео"
+    }
+]
 
 if __name__ == '__main__':
     app.run()
