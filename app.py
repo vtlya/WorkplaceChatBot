@@ -2,6 +2,13 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 import os
+import attr
+#import enum
+from requests_toolbelt import MultipartEncoder
+#import pymessenger2
+#from pymessenger2 import utils
+#from pymessenger2.utils import AttrsEncoder
+
 
 app = Flask(__name__)
 
@@ -121,10 +128,10 @@ def test_upload_mp3_file(tmpdir):
 
 def test_button_message():
     buttons = []
-    button = URLButton(title='Arsenal', url='http://arsenal.com')
-    buttons.append(button)
     button = PostbackButton(title='Other', payload='other')
     buttons.append(button)
+    #button = URLButton(title='Arsenal', url='http://arsenal.com')
+    #buttons.append(button)
     text = 'Select'
     result = bot.send_button_message(recipient_id, text, buttons)
     assert type(result) is dict
@@ -154,3 +161,24 @@ def test_fields():
     user_profile = bot.get_user_info(recipient_id, fields=fields)
     assert user_profile is not None
     assert len(user_profile.keys()) == len(fields)
+
+
+
+
+
+
+
+@attr.s
+class PostbackButton(object):
+    """
+    See https://developers.facebook.com/docs/messenger-platform/send-api-reference/postback-button
+    """
+    title = attr.ib()
+    payload = attr.ib(default=None)
+    type = attr.ib(default='postback')
+
+    def __attrs_post_init__(self):
+        assert self.type == 'postback', 'Type of a button can\'t be set ' \
+                                        'manually.'
+        if not self.payload:
+            self.payload = self.title
