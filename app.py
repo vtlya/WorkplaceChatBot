@@ -63,11 +63,39 @@ def get_message():
     '''Отправляет случайные сообщения пользователю.'''
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
+#new
+def test_button_message():
+    buttons = []
+    button = PostbackButton(title='I button and i work', payload='other')
+    buttons.append(button)
+    #button = URLButton(title='Arsenal', url='http://arsenal.com')
+    #buttons.append(button)
+    text = 'Select'
+    result = bot.send_button_message(recipient_id, text, buttons)
+    assert type(result) is dict
+    assert result.get('message_id') is not None
+    assert result.get('recipient_id') is not None
 
+@attr.s
+class PostbackButton(object):
+    """
+    See https://developers.facebook.com/docs/messenger-platform/send-api-reference/postback-button
+    """
+    title = attr.ib()
+    payload = attr.ib(default=None)
+    type = attr.ib(default='postback')
+
+    def __attrs_post_init__(self):
+        assert self.type == 'postback', 'Type of a button can\'t be set ' \
+                                        'manually.'
+        if not self.payload:
+            self.payload = self.title
+
+#end new
 if __name__ == '__main__':
     app.run()
 
-
+'''
 def test_wrong_format_message():
     result = bot.send_text_message(recipient_id, {'text': "its a test"})
     assert type(result) is dict
@@ -167,9 +195,6 @@ def test_fields():
 
 
 
-
-
-
 @attr.s
 class PostbackButton(object):
     """
@@ -184,3 +209,4 @@ class PostbackButton(object):
                                         'manually.'
         if not self.payload:
             self.payload = self.title
+'''
