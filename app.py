@@ -36,6 +36,8 @@ def receive_message():
                 #определяем ID, чтобы знать куда отправлять ответ
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
+                    response_sent_text = get_message()
+                    send_message(recipient_id, response_sent_text)
                     response_sent_text = test_button_message()
                     send_message(recipient_id, response_sent_text)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
