@@ -36,10 +36,8 @@ def receive_message():
                 #определяем ID, чтобы знать куда отправлять ответ
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
-                    response_sent_text = get_message()
-                    send_message(recipient_id, response_sent_text)
-                    response_sent_text = test_button_message()
-                    send_message(recipient_id, response_sent_text)
+                    #response_sent_text = get_message()
+                    send_but(recipient_id)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -59,10 +57,23 @@ def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return 'Success'
 
+def send_but(recipient_id):
+    '''Отправляет кнопки'''
+    buts = ["Отправь это", "это", "Круто", "КНОПКА!!"]
+    bot.send_button_message(recipient_id, "Внизу тестовая кнопка", buts)
+    return 'Success'
+
 def get_message():
     '''Отправляет случайные сообщения пользователю.'''
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
+
+if __name__ == '__main__':
+    app.run()
+
+
+
+'''
 #new
 def test_button_message():
     buttons = []
@@ -91,9 +102,7 @@ class PostbackButton(object):
         if not self.payload:
             self.payload = self.title
 
-#end new
-if __name__ == '__main__':
-    app.run()
+'''
 
 '''
 def test_wrong_format_message():
