@@ -39,8 +39,8 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
-                    bot.send_text_message(recipient_id, "Поулил сообщение")
-                    send_quick_reply(recipient_id,"Выбкри что-нибудь",replys1)
+                    send_message(recipient_id, "Поулил сообщение")
+                    send_quick_reply(recipient_id,"Выбери что-нибудь")
                     send_but(recipient_id, buts1)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
@@ -98,7 +98,7 @@ replys1=[
     }
 ]
 
-def send_quick_reply(self, recipient_id, message, replys):
+def send_quick_reply(self, recipient_id, message):
     '''Send text messages to the specified recipient.
     https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies
     Input:
@@ -114,7 +114,19 @@ def send_quick_reply(self, recipient_id, message, replys):
         'messaging_type': 'RESPONSE',
         'message': {
             'text': message,
-            'quick_replies': replys
+            'quick_replies':[
+                {
+                    "content_type":"text",
+                    "title":"Red",
+                    "payload":"<POSTBACK_PAYLOAD1>",
+                    "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
+                },{
+                    "content_type":"text",
+                    "title":"Green",
+                    "payload":"<POSTBACK_PAYLOAD2>",
+                    "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
+                }
+            ]
         }
     }
     return self.send_raw(payload)
