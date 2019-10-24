@@ -3,9 +3,10 @@ from flask import Flask, request
 from pymessenger.bot import Bot
 import os
 import json
+import requests
 import attr
-#import enum
 from requests_toolbelt import MultipartEncoder
+#import enum
 #import pymessenger2
 #from pymessenger2 import utils
 #from pymessenger2.utils import AttrsEncoder
@@ -38,7 +39,9 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
-                    send_but(recipient_id,buts1)
+                    bot.send_text_message(recipient_id, "Поулил сообщение")
+                    send_quick_reply(recipient_id,"Выбкри что-нибудь",replys1)
+                    send_but(recipient_id, buts1)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -49,8 +52,10 @@ def verify_fb_token(token_sent):
     '''Сверяет токен, отправленный фейсбуком, с имеющимся у вас.
     При соответствии позволяет осуществить запрос, в обратном случае выдает ошибку.'''
     if token_sent == VERIFY_TOKEN:
+        print("Verified")
         return request.args['hub.challenge']
     else:
+        print('wrong verification token')
         return 'Invalid verification token'
 
 def send_message(recipient_id, response):
@@ -79,6 +84,41 @@ buts1=[
         "title": "Посмотреть обучающие видео"
     }
 ]
+replys1=[
+    {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"<POSTBACK_PAYLOAD1>",
+        "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
+    },{
+        "content_type":"text",
+        "title":"Green",
+        "payload":"<POSTBACK_PAYLOAD2>",
+        "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
+    }
+]
+
+def send_quick_reply(self, recipient_id, message, replys):
+    '''Send text messages to the specified recipient.
+    https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies
+    Input:
+        recipient_id: recipient id to send to
+        message: message to send
+    Output:
+        Response from API as <dict>
+    '''
+    payload = {
+        'recipient': {
+            'id': recipient_id
+        },
+        'messaging_type': 'RESPONSE',
+        'message': {
+            'text': message,
+            'quick_replies': replys
+        }
+    }
+    return self.send_raw(payload)
+
 
 if __name__ == '__main__':
     app.run()
