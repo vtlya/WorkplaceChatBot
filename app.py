@@ -1,6 +1,7 @@
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
+from pymessenger import Element, Button
 import os
 import json
 import requests
@@ -39,8 +40,8 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
-                    send_message(recipient_id, "Поулил сообщение")
-                    send_quick_reply(recipient_id,"Выбери что-нибудь")
+                    #send_message(recipient_id, "Поулил сообщение")
+                    #send_quick_reply(recipient_id,"Выбери что-нибудь")
                     send_but(recipient_id, buts1)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
@@ -73,64 +74,7 @@ def get_message():
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
 
-buts1=[
-    {
-        "type":"web_url",
-        "url":"https://www.messenger.com",
-        "title":"Перейти на сайт мессенжера"
-    },{
-        "type": "web_url",
-        "url": "https://www.youtube.com",
-        "title": "Посмотреть обучающие видео"
-    }
-]
-replys1=[
-    {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD1>",
-        "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
-    },{
-        "content_type":"text",
-        "title":"Green",
-        "payload":"<POSTBACK_PAYLOAD2>",
-        "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
-    }
-]
-
-def send_quick_reply(self, recipient_id, message):
-    '''Send text messages to the specified recipient.
-    https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies
-    Input:
-        recipient_id: recipient id to send to
-        message: message to send
-    Output:
-        Response from API as <dict>
-    '''
-    payload = {
-        'recipient': {
-            'id': recipient_id
-        },
-        'messaging_type': 'RESPONSE',
-        'message': {
-            'text': message,
-            'quick_replies':[
-                {
-                    "content_type":"text",
-                    "title":"Red",
-                    "payload":"<POSTBACK_PAYLOAD1>",
-                    "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
-                },{
-                    "content_type":"text",
-                    "title":"Green",
-                    "payload":"<POSTBACK_PAYLOAD2>",
-                    "image_url":"http://www.logobank.ru/images/ph/en/l/leroy_merlin.png"
-                }
-            ]
-        }
-    }
-    return self.send_raw(payload)
-
+buts1=Element(title="Arsenal", image_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Leroy_Merlin.svg/800px-Leroy_Merlin.svg.png", subtitle="Click to go to Arsenal website.", item_url="http://arsenal.com")
 
 if __name__ == '__main__':
     app.run()
