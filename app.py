@@ -40,13 +40,13 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
-                    #send_message(recipient_id, "Поулил сообщение")
+                    send_message(recipient_id, "Поулил сообщение")
                     #send_quick_reply(recipient_id,"Выбери что-нибудь")
                     send_but(recipient_id, buts1)
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
-                    send_message(recipient_id, response_sent_nontext)
+                    send_message(recipient_id, "Поулил сообщение")
         return "Message Processed"
 
 def verify_fb_token(token_sent):
