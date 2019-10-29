@@ -82,7 +82,10 @@ def get_started(self):
         "payload": "<postback_payload>"
         }
     }
-    return self.send_raw(payload)
+    headers = {'Content-type': 'application/json'}
+    URL = "https://graph.workplace.com/v2.6/me/messenger_profile?access_token=" + ACCESS_TOKEN
+    r = requests.post(URL + "/session", json=payload)
+    return print("Status: " + str(r.status_code), "/r Body: " + str(r.content))
 
 buts1=Element(title="Arsenal", image_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Leroy_Merlin.svg/800px-Leroy_Merlin.svg.png", subtitle="Click to go to Arsenal website.", item_url="http://arsenal.com")
 
