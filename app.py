@@ -40,6 +40,7 @@ def receive_message():
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     #response_sent_text = get_message()
+                    get_started()
                     send_message(recipient_id, "Поулил сообщение")
                     send_message(recipient_id, "Вторая отправка для теста")
                     #send_quick_reply(recipient_id,"Выбери что-нибудь")
@@ -74,6 +75,14 @@ def get_message():
     '''Отправляет случайные сообщения пользователю.'''
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
+
+def get_started(self):
+    payload = {
+        "get_started": {
+        "payload": "<postback_payload>"
+        }
+    }
+    return self.send_raw(payload)
 
 buts1=Element(title="Arsenal", image_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Leroy_Merlin.svg/800px-Leroy_Merlin.svg.png", subtitle="Click to go to Arsenal website.", item_url="http://arsenal.com")
 
