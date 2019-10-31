@@ -81,7 +81,7 @@ def get_message():
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
 
-def get_started(self):
+def get_started():
     payload = {
         "get_started": {
         "payload": "<postback_payload>"
