@@ -5,11 +5,6 @@ from pymessenger import Element, Button
 import os
 import json
 import requests
-from schematics import Model
-from schematics.types import StringType, ListType, PolyModelType, BooleanType
-from fbotics.models.buttons import PostbackButton, WebUrlButton, CallButton
-from fbotics.models.attachment import Attachment
-from fbotics.models.message import Message
 import attr
 from requests_toolbelt import MultipartEncoder
 #import enum
