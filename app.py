@@ -4,10 +4,10 @@ from pymessenger.bot import Bot
 from button import Button
 from qucikreplyElement import Buts
 import os
-import json
-import requests
-import attr
-from requests_toolbelt import MultipartEncoder
+#import json
+#import requests
+#import attr
+#from requests_toolbelt import MultipartEncoder
 
 # import enum
 # import pymessenger2
@@ -42,22 +42,24 @@ def receive_message():
                     # определяем ID, чтобы знать куда отправлять ответ
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
+                    if message['text'] == 'Магазин mobile/Продажа':
+                        send_message(recipient_id, "Поулил сообщение. Контент для Магазина Mobile")
                     # response_sent_text = get_message()
-                    send_message(recipient_id, "Поулил сообщение")
                     send_message(recipient_id, "Вторая отправка для теста")
-                    send_buttons(recipient_id, "Ну вот они твои долбаные кнопки", buts1qr)
+                    #send_buttons(recipient_id, "Ну вот они твои долбаные кнопки", buts1qr)
                     # send_quick_reply(recipient_id,"Выбери что-нибудь")
-                    send_but(recipient_id, buts1)
+                    #send_but(recipient_id, buts1)
                 # если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, "Другой кейс для проверки условия когда сообщение не текстовое")
         return "Message Processed"
 
-
+'''
 def send_buttons(recipient_id, text, buttons):
     but.send_qr_message(recipient_id, text, buttons)
     return 'Success'
+'''
 
 def verify_fb_token(token_sent):
     '''Сверяет токен, отправленный фейсбуком, с имеющимся у вас.
@@ -87,42 +89,6 @@ def get_message():
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!",
                         "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
-
-
-def get_started(self):
-    payload = {
-        "get_started": {
-            "payload": "<postback_payload>"
-        }
-    }
-    headers = {'Content-type': 'application/json'}
-    URL = "https://graph.workplace.com/v2.6/me/messenger_profile?access_token=" + ACCESS_TOKEN  # 173.252.127.33
-    r = requests.post(URL + "/session", json=payload)
-    return print("Status: " + str(r.status_code), "/r Body: " + str(r.content))
-
-
-def send_button_message(self, recipient_id, text, buttons):
-    '''Send text messages to the specified recipient.
-    https://developers.facebook.com/docs/messenger-platform/send-api-reference/button-template
-    Input:
-        recipient_id: recipient id to send to
-        text: text of message to send
-        buttons: buttons to send
-    Output:
-        Response from API as <dict>
-    '''
-
-    payload = {
-        'recipient': {
-            'id': recipient_id
-        },
-        "messaging_type": "RESPONSE",
-        'message': {
-            "text": text,
-            "quick_replies" : buttons
-        }
-    }
-    return self.send_raw(payload)
 
 buts1qr = [Buts(title="Arsenal",
                image_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Leroy_Merlin.svg/800px-Leroy_Merlin.svg.png",
