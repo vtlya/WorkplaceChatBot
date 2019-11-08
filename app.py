@@ -41,9 +41,8 @@ def receive_message():
         for event in output['entry']:
             messaging = event['messaging']
             for message in messaging:
-                if message.get('message'):
-                    recipient_id = message['sender']['id']
                 if message.get('postback'):
+                    recipient_id = message['sender']['id']
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
     return 'OK'
