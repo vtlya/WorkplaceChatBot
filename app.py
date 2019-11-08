@@ -1,6 +1,6 @@
 import random
 from flask import Flask, request
-from pymessenger.bot import Bot
+from bot2 import Bot
 from pymessenger import Element, Button
 import os
 import datetime

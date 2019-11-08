@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c05234e-b33a-4905-be23-1a162a31522d" name="Default Changelist" comment="" />
+    <list default="true" id="5c05234e-b33a-4905-be23-1a162a31522d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/button.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qucikreplyElement.py" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
