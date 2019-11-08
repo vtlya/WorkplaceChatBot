@@ -256,7 +256,7 @@ class Bot(FacebookGraphApi):
         }
         return self.send_raw(payload)
 
-    def send_video(self, recipient_id, video_path):
+    def send_video(self, recipient_id, video_path, image_path):
         '''Send video to the specified recipient.
         Video should be MP4 or MOV, but supports more (https://www.facebook.com/help/218673814818907).
         https://developers.facebook.com/docs/messenger-platform/send-api-reference/video-attachment
