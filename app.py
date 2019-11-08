@@ -38,7 +38,6 @@ def receive_message():
         f = open('logs.txt', 'a')
         f.write(str(output) + '\n')
         f.close()
-        recipient_id = ''
         for event in output['entry']:
             messaging = event['messaging']
             for message in messaging:
