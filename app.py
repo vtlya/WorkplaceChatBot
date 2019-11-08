@@ -62,7 +62,7 @@ def receive_postback(recipient_id, postback_body):
     elif postback_body == 'One':
         send_message(recipient_id, 'Видео с ютубчика https://www.youtube.com/watch?v=eqBZDHlYO70')
     elif postback_body == 'Two':
-        send_message(recipient_id, 'Просто слова')
+        send_image(recipient_id, 'https://i.ytimg.com/vi/pDGHtNlr4-4/maxresdefault.jpg')
     else:
         send_message(recipient_id, 'Воспользуйтесь меню. ..Инструкция по меню.. .')
 
@@ -127,6 +127,11 @@ def send_video(recepient_id, video_url):
     '''Отправка видосика'''
     bot.send_video_url(recepient_id, video_url)
     return 'Video sent'
+
+
+def send_image(recpient_id, image_url):
+    bot.send_image_url(recpient_id, image_url)
+    return 'image sent'
 
 
 # ef send_but(recipient_id, buts):
