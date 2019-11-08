@@ -50,9 +50,9 @@ def receive_message():
 
 def receive_postback(recipient_id, postback_body):
     if postback_body == 'StarT':
-        send_message(recipient_id, 'Привет, я помогу тебе разобраться с работой в мобильной платформе + link_help')
+        send_message(recipient_id, 'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
     elif postback_body == 'MagMobile':
-        send_video(recipient_id, 'https://youtu.be/6iSoOLJ76Qs')
+        send_video(recipient_id, '"https://www.youtube.com/embed/6iSoOLJ76Qs?start=4"')
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
@@ -64,7 +64,8 @@ def receive_postback(recipient_id, postback_body):
     elif postback_body == 'Two':
         send_image(recipient_id, 'https://i.ytimg.com/vi/pDGHtNlr4-4/maxresdefault.jpg')
     else:
-        send_message(recipient_id, 'Воспользуйтесь меню. ..Инструкция по меню.. .')
+        send_message(recipient_id, 'Вы воспользовались недопустимой командой. Воспользуйтесь рабочим пунктом меню. Бот не воспринимает текстовые сообщения!')
+
 
 
 #def delete_turn_file(recipient_id):
