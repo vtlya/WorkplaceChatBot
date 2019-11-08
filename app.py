@@ -52,7 +52,7 @@ def receive_postback(recipient_id, postback_body):
         send_message(recipient_id,
                      'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
     elif postback_body == 'MagMobile':
-        send_video(recipient_id, 'https://adeo.workplace.com/100040977923181/videos/147808616595068/')
+        send_video(recipient_id, 'https://video.xx.fbcdn.net/v/t42.9040-2/76643126_964846243893520_3339349278937055232_n.mp4?_nc_cat=100&efg=eyJybHIiOjMwMCwicmxhIjo1MTIsInZlbmNvZGVfdGFnIjoic3ZlX3NkIn0%3D&_nc_oc=AQlI-m3wt4jgvcVmBhdHzXlMV0dXWZfFXd8T5u5xsLV9zwVCrRU26rUUm-8Ddbwiw1U&_nc_ht=video-arn2-2.xx&oh=3724e8139fc94a160b9dd1a69197f1e8&oe=5DC5B13D')
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
