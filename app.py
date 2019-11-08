@@ -14,7 +14,6 @@ from requests_toolbelt import MultipartEncoder
 # from pymessenger2 import utils
 # from pymessenger2.utils import AttrsEncoder
 
-
 app = Flask(__name__)
 
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
@@ -50,9 +49,10 @@ def receive_message():
 
 def receive_postback(recipient_id, postback_body):
     if postback_body == 'StarT':
-        send_message(recipient_id, 'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
+        send_message(recipient_id,
+                     'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
     elif postback_body == 'MagMobile':
-        send_video(recipient_id, 'videos\configurate_wi_fi.mp4', 'videos\wifi.jpg')
+        send_video(recipient_id, 'videos/configurate_wi_fi.mp4', 'videos/wi_fi.png')
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
@@ -61,10 +61,12 @@ def receive_postback(recipient_id, postback_body):
         #   delete_turn_file(recipient_id)
     elif postback_body == 'One':
         send_message(recipient_id, 'Видео с ютубчика https://www.youtube.com/watch?v=eqBZDHlYO70')
+        send_local_image(recipient_id, 'videos/wi_fi.png')
     elif postback_body == 'Two':
         send_image(recipient_id, 'https://i.ytimg.com/vi/pDGHtNlr4-4/maxresdefault.jpg')
     else:
-        send_message(recipient_id, 'Вы воспользовались недопустимой командой. Воспользуйтесь рабочим пунктом меню. Бот не воспринимает текстовые сообщения!')
+        send_message(recipient_id,
+                     'Вы воспользовались недопустимой командой. Воспользуйтесь рабочим пунктом меню. Бот не воспринимает текстовые сообщения!')
 
 
 #
@@ -125,15 +127,20 @@ def send_message(recipient_id, response):
     return 'Success'
 
 
-def send_video(recepient_id, video_url, image_path):
+def send_video(recepient_id, video_path, image_path):
     '''Отправка видосика'''
-    bot.send_video(recepient_id, video_url, image_path)
+    bot.send_video(recepient_id, video_path, image_path)
     return 'Video sent'
 
 
 def send_image(recpient_id, image_url):
     bot.send_image_url(recpient_id, image_url)
     return 'image sent'
+
+
+def send_local_image(recepient_id, image_path):
+    bot.send_image(recepient_id, image_path)
+    return 'local image sent'
 
 
 # ef send_but(recipient_id, buts):
