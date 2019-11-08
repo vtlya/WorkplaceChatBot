@@ -52,7 +52,7 @@ def receive_postback(recipient_id, postback_body):
         send_message(recipient_id,
                      'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
     elif postback_body == 'MagMobile':
-        send_video(recipient_id, 'videos/configurate_wi_fi.mp4', 'videos/wi_fi.png')
+        send_video(recipient_id, 'https://adeo.workplace.com/100040977923181/videos/147808616595068/')
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
@@ -127,9 +127,9 @@ def send_message(recipient_id, response):
     return 'Success'
 
 
-def send_video(recepient_id, video_path, image_path):
+def send_video(recepient_id, video_path):
     '''Отправка видосика'''
-    bot.send_video(recepient_id, video_path, image_path)
+    bot.send_video_url(recepient_id, video_path)
     return 'Video sent'
 
 
