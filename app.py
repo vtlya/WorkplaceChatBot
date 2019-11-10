@@ -67,6 +67,7 @@ def receive_postback(recipient_id, postback_body):
         return 'pass'
     elif postback_body == 'Two':
         send_image(recipient_id, 'https://i.ytimg.com/vi/pDGHtNlr4-4/maxresdefault.jpg')
+        send_image(recipient_id, 'https://vtlya.github.io/datastorage/videos/wi_fi.png')
         return 'pass'
     else:
         send_message(recipient_id,
@@ -132,9 +133,9 @@ def send_message(recipient_id, response):
     return 'Success'
 
 
-def send_video(recepient_id, video_path):
+def send_video(recepient_id, video_url):
     '''Отправка видосика'''
-    bot.send_video_url(recepient_id, video_path)
+    bot.send_video_url(recepient_id, video_url)
     return 'Video sent'
 
 
