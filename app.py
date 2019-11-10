@@ -51,21 +51,27 @@ def receive_postback(recipient_id, postback_body):
     if postback_body == 'StarT':
         send_message(recipient_id,
                      'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
+        return 'pass'
     elif postback_body == 'MagMobile':
         send_video(recipient_id, 'https://vtlya.github.io/datastorage/videos/configurate_wi_fi.mp4')
+        return 'pass'
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
         send_message(recipient_id, 'https://vimeo.com/371585412/df8536a91e')
+        return 'pass'
         # if check_turn(recipient_id) == True:
         #   delete_turn_file(recipient_id)
     elif postback_body == 'One':
         send_message(recipient_id, 'Видео с ютубчика https://www.youtube.com/watch?v=eqBZDHlYO70')
+        return 'pass'
     elif postback_body == 'Two':
         send_image(recipient_id, 'https://i.ytimg.com/vi/pDGHtNlr4-4/maxresdefault.jpg')
+        return 'pass'
     else:
         send_message(recipient_id,
                      'Вы воспользовались недопустимой командой. Воспользуйтесь рабочим пунктом меню. Бот не воспринимает текстовые сообщения!')
+        return 'pass'
 
 
 #
