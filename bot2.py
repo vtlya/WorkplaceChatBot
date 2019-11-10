@@ -307,7 +307,7 @@ class Bot(FacebookGraphApi):
             'message': json.dumps(
                 {
                     'attachment': {
-                        'type': 'audio',
+                        'type': 'video',
                         'payload': {
                             'url': video_url
                         }
