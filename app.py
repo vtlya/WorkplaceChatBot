@@ -44,8 +44,9 @@ def receive_message():
                     recipient_id = message['sender']['id']
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
-                    return 'Done'
-    return 'OK'
+                    break
+                return 'OK'
+
 
 
 def receive_postback(recipient_id, postback_body):
