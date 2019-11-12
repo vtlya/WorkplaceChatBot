@@ -44,16 +44,19 @@ def receive_message():
                     recipient_id = message['sender']['id']
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
-                    return print('recieved with postback')
-                elif message.get('text'):
+                    print('recieved with postback')
+                    break
+                elif message.get('text') and (not message.get('postback')):
                     recipient_id = message['sender']['id']
                     send_message(recipient_id, 'К сожалению, бот не распознает текст:( Пожалуйста, воспользуйся меню с низу как показано на картинке')
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/mobile_bot.PNG')
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/desctop_bot.PNG')
-                    return print('recieved with text')
+                    print('recieved with text')
+                    break
                 else:
-                    return print('bot cant received')
-                
+                    print('bot cant received')
+                    break
+        return print('request OBRABOTAN')
 
 
 
