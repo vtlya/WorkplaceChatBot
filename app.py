@@ -44,7 +44,13 @@ def receive_message():
                     recipient_id = message['sender']['id']
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
-                    return 'Postback rcieved'
+                    if message.get('text'):
+                        recipient_id = message['sender']['id']
+                        send_message(recipient_id, 'К сожалению, бот не распознает текст:( Пожалуйста, воспользуйся меню с низу как показано на картинке')
+                        send_image(recipient_id, 'https://vtlya.github.io/datastorage/mobile_bot.PNG')
+                        send_image(recipient_id, 'https://vtlya.github.io/datastorage/desctop_bot.PNG')
+                    return 'Pass'
+
         return 'OK'
 
 
@@ -57,8 +63,6 @@ def receive_postback(recipient_id, postback_body):
     elif postback_body == 'MagMobile':
         send_video(recipient_id, 'https://vtlya.github.io/datastorage/videos/configurate_wi_fi.mp4')
         return 'pass'
-        # if check_turn(recipient_id) == True:
-        #   delete_turn_file(recipient_id)
     elif postback_body == 'Dostovernost':
         send_message(recipient_id, 'https://vimeo.com/371585412/df8536a91e')
         return 'pass'
@@ -138,7 +142,7 @@ def send_message(recipient_id, response):
 def send_video(recepient_id, video_url):
     '''Отправка видосика'''
     bot.send_video_url(recepient_id, video_url)
-    return 'Video sent'
+    return 'video sent'
 
 
 def send_image(recpient_id, image_url):
