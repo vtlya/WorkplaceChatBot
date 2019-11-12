@@ -51,8 +51,12 @@ def receive_message():
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/mobile_bot.PNG')
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/desctop_bot.PNG')
                     return print('recieved with text')
+                else:
+                    return print('bot cant received')
+                
 
-        return 'OK'
+
+
 
 
 
