@@ -405,3 +405,31 @@ class Bot(FacebookGraphApi):
             )
         }
         return self.send_raw(payload)
+
+    def send_attachment_by_id(self, recipient_id, type, id):
+        '''Send file to the specified recipient.
+        https://developers.facebook.com/docs/messenger-platform/send-api-reference/file-attachment
+        Input:
+            recipient_id: recipient id to send to
+            file_url: url of file to be sent
+        Output:
+            Response from API as <dict>
+        '''
+        payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                }
+            ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type': type,
+                        'payload': {
+                            "attachment_id": id
+                        }
+                    }
+                }
+            )
+        }
+        return self.send_raw(payload)
