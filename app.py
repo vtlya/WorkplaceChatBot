@@ -133,7 +133,7 @@ def send_message(recipient_id, response):
 
 def send_video(recepient_id, video_url):
     '''Отправка видосика'''
-    bot.send_video_url(recepient_id, video_url)
+    bot.send_video_by_opengraph(recepient_id, video_url)
     return 'video sent'
 
 

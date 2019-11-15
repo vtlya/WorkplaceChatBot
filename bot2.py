@@ -315,6 +315,37 @@ class Bot(FacebookGraphApi):
             }
         return self.send_raw(payload)
 
+    def send_video_by_opengraph(self, recipient_id, video_url):
+        '''Send video to specified recipient using URL.
+        Video should be MP4 or MOV, but supports more (https://www.facebook.com/help/218673814818907).
+        https://developers.facebook.com/docs/messenger-platform/send-api-reference/video-attachment
+        Input:
+            recipient_id: recipient id to send to
+            video_url: url of video to be sent
+        Output:
+            Response from API as <dict>
+        '''
+        payload = {
+            'recipient':
+                {
+                    'id': recipient_id
+                },
+            'message':
+                {
+                    'attachment': {
+                        'type': 'template',
+                        'payload': json.dumps({
+                            'template_type': 'open_graph',
+                            "elements": [
+                                {
+                                    'url': video_url
+                                }
+                            ]
+                        })
+                    }
+                }
+            }
+        return self.send_raw(payload)
 
     def send_file(self, recipient_id, file_path):
         '''Send file to the specified recipient.
