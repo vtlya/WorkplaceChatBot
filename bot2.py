@@ -299,12 +299,11 @@ class Bot(FacebookGraphApi):
             Response from API as <dict>
         '''
         payload = {
-            'recipient': json.dumps(
+            'recipient':
                 {
                     'id': recipient_id
-                }
-            ),
-            'message': json.dumps(
+                },
+            'message':
                 {
                     'attachment': {
                         'type': 'video',
@@ -313,8 +312,7 @@ class Bot(FacebookGraphApi):
                         }
                     }
                 }
-            )
-        }
+            }
         return self.send_raw(payload)
 
 
