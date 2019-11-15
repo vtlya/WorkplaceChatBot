@@ -34,30 +34,24 @@ def receive_message():
     else:
         # получаем сообщение, отправленное пользователем для бота в Facebook
         output = request.get_json(force=True)
-        f = open('logs.txt', 'a')
-        f.write(str(output) + '\n')
-        f.close()
         for event in output['entry']:
             messaging = event['messaging']
             for message in messaging:
+                recipient_id = message['sender']['id']
                 if message.get('postback'):
-                    recipient_id = message['sender']['id']
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
                     print('recieved with postback')
-                elif message.get('text') and (not message.get('postback')):
+                if message.get('text'):
                     recipient_id = message['sender']['id']
-                    send_message(recipient_id, 'К сожалению, бот не распознает текст:( Пожалуйста, воспользуйся меню с низу как показано на картинке')
+                    send_message(recipient_id,
+                                 'К сожалению, бот не распознает текст:( Пожалуйста, воспользуйся меню с низу как показано на картинке')
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/mobile_bot.PNG')
                     send_image(recipient_id, 'https://vtlya.github.io/datastorage/desctop_bot.PNG')
                     print('recieved with text')
-                else:
+                if message.get('text') == '' and message.get('postback') == '':
                     print('bot cant received')
-        return print('request OBRABOTAN')
-
-
-
-
+    return print('request OBRABOTAN')
 
 
 def receive_postback(recipient_id, postback_body):
