@@ -62,7 +62,7 @@ def receive_postback(recipient_id, postback_body):
         send_video(recipient_id, "773792666414661")
         return 'pass'
     elif postback_body == 'BVandservice':
-        send_video(recipient_id, "2518847301538100")
+        send_video(recipient_id, "2578299052263509")
         return 'pass'
     elif postback_body == 'changeBV':
         send_video(recipient_id, "503631150228565")
@@ -71,7 +71,7 @@ def receive_postback(recipient_id, postback_body):
         send_video(recipient_id, "491717245055585")
         return 'pass'
     elif postback_body == 'subscribeClient':
-        send_video(recipient_id, "1246397598900800")
+        send_video(recipient_id, "1315002718685687")
         return 'pass'
     elif postback_body == 'honestInfo':
         send_video(recipient_id, "503975686855553")
@@ -83,7 +83,7 @@ def receive_postback(recipient_id, postback_body):
         send_video(recipient_id, "547146826069273")
         return 'pass'
     elif postback_body == 'OhMyBoss':
-        send_video(recipient_id, "2560504054184020")
+        send_video(recipient_id, "480862626156448")
         return 'pass'
     elif postback_body == 'Otdel':
         send_video(recipient_id, "551432335425632")
@@ -92,10 +92,10 @@ def receive_postback(recipient_id, postback_body):
         send_video(recipient_id, "810909466011156")
         return 'pass'
     elif postback_body == 'C3correction':
-        send_video(recipient_id, "2165591283744650")
+        send_video(recipient_id, "2704255672930630")
         return 'pass'
     elif postback_body == 'Dostovernost':
-        send_video(recipient_id, "1193837590827270")
+        send_video(recipient_id, "430998330918655")
         return 'pass'
     elif postback_body == 'suplyInfo':
         send_video(recipient_id, "583908779027614")
