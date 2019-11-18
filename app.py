@@ -52,14 +52,54 @@ def receive_postback(recipient_id, postback_body):
         send_message(recipient_id,
                      'Привет, я помогу тебе разобраться с работой в мобильной платформе. Я пока еще не готов, но ты можешь почитать статью на Вики ЛМ: https://intraru3.leroymerlin.ru/wiki_page/article/ff37b167-2b02-ea11-80e7-3a9fa140007b?ref=/wiki_page/search?query=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F')
         return 'pass'
-    elif postback_body == 'MagMobile':
+    elif postback_body == 'wifi':
         send_video(recipient_id, "486693275268886")
         return 'pass'
-    elif postback_body == 'Dostovernost':
-        send_message(recipient_id, 'https://vimeo.com/371585412/df8536a91e')
+    elif postback_body == 'createBV':
+        send_video(recipient_id, "423349031937094")
         return 'pass'
-        # if check_turn(recipient_id) == True:
-        #   delete_turn_file(recipient_id)
+    elif postback_body == 'recalRM':
+        send_video(recipient_id, "773792666414661")
+        return 'pass'
+    elif postback_body == 'BVandservice':
+        send_video(recipient_id, "2518847301538100")
+        return 'pass'
+    elif postback_body == 'changeBV':
+        send_video(recipient_id, "503631150228565")
+        return 'pass'
+    elif postback_body == 'productInfo':
+        send_video(recipient_id, "491717245055585")
+        return 'pass'
+    elif postback_body == 'subscribeClient':
+        send_video(recipient_id, "1246397598900800")
+        return 'pass'
+    elif postback_body == 'honestInfo':
+        send_video(recipient_id, "503975686855553")
+        return 'pass'
+    elif postback_body == 'configurateMail':
+        send_video(recipient_id, "548599715975235")
+        return 'pass'
+    elif postback_body == 'Mobalytics':
+        send_video(recipient_id, "547146826069273")
+        return 'pass'
+    elif postback_body == 'OhMyBoss':
+        send_video(recipient_id, "2560504054184020")
+        return 'pass'
+    elif postback_body == 'Otdel':
+        send_video(recipient_id, "551432335425632")
+        return 'pass'
+    elif postback_body == 'clientApp':
+        send_video(recipient_id, "810909466011156")
+        return 'pass'
+    elif postback_body == 'C3correction':
+        send_video(recipient_id, "2165591283744650")
+        return 'pass'
+    elif postback_body == 'Dostovernost':
+        send_video(recipient_id, "1193837590827270")
+        return 'pass'
+    elif postback_body == 'suplyInfo':
+        send_video(recipient_id, "583908779027614")
+        return 'pass'
     elif postback_body == 'One':
         send_message(recipient_id, 'Видео с ютубчика https://www.youtube.com/watch?v=eqBZDHlYO70')
         return 'pass'
