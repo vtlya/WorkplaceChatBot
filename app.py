@@ -48,13 +48,22 @@ def receive_message():
                 elif message.get('message'):
                     if message['message'].get('text'):
                         recipient_id = message['sender']['id']
-                        send_message(recipient_id, 'К сожалению, бот не воспринимает текстовые сообщения. Пожулйста, выбери один из доступных пунктов меню.')
+                        text = message['message']['text']
+                        receive_text_message(recipient_id, text)
                         return 'Done'
                     if message['message'].get('attachments'):
                         recipient_id = message['sender']['id']
                         send_message(recipient_id, 'К сожалению, бот не воспринимает вложения, такие как картинки, видео и аудио и не может на них отвечать. Пожулйста, выбери один из доступных пунктов меню.')
                         return 'Done'
     return 'OK'
+
+def receive_text_message(recipient_id, text):
+    if text == 'Привет':
+        send_message(recipient_id, 'Привет! Я могу помочь тебе разобраться с мобильной платформой. Зайди, пожалуйста, в пункт меню с низу и выбери ОБУЧЕНИЯ')
+        return 'pass'
+    else:
+        send_message(recipient_id, 'К сожалению, бот не воспринимает текстовые сообщения. Пожулйста, выбери один из доступных пунктов меню.')
+        return 'pass'
 
 def receive_postback(recipient_id, postback_body):
     if postback_body == 'StarT':
