@@ -45,7 +45,7 @@ def receive_message():
                     postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
                     return 'Done'
-                if message['message'].get('text'):
+                elif message['message'].get('text'):
                     recipient_id = message['sender']['id']
                     send_message(recipient_id, 'К сожалению, бот не воспринимает текстовые сообщения. Пожулйста, выбери один из доступных пунктов меню.')
                     return 'Done'
