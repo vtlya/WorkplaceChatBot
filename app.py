@@ -40,10 +40,9 @@ def receive_message():
         for event in output['entry']:
             messaging = event['messaging']
             for message in messaging:
-                if message.get('quick_reply'):
+                if message.get('postback'):
                     recipient_id = message['sender']['id']
-                    #postback_body = message['postback']['payload']
-                    postback_body = message['quick_reply']['payload']
+                    postback_body = message['postback']['payload']
                     receive_postback(recipient_id, postback_body)
                     print('ps_id = ',recipient_id)
                     return 'Done'
@@ -57,6 +56,12 @@ def receive_message():
                     if message['message'].get('attachments'):
                         recipient_id = message['sender']['id']
                         send_message(recipient_id, 'К сожалению, бот не воспринимает вложения, такие как картинки, видео и аудио и не может на них отвечать. Пожулйста, выбери один из доступных пунктов меню.')
+                        print('ps_id = ', recipient_id)
+                        return 'Done'
+                    if message['message'].get('quick_reply'):
+                        recipient_id = message['sender']['id']
+                        postback_body = message['message']['quick_reply']['payload']
+                        receive_postback(recipient_id, postback_body)
                         print('ps_id = ', recipient_id)
                         return 'Done'
     return 'OK'
