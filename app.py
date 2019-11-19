@@ -47,7 +47,7 @@ def receive_message():
                     print('ps_id = ',recipient_id)
                     return 'Done'
                 elif message.get('message'):
-                    if message['message'].get('text'):
+                    if message['message'].get('text') and not(message['message'].get('quick_reply')):
                         recipient_id = message['sender']['id']
                         text = message['message']['text']
                         receive_text_message(recipient_id, text)
