@@ -40,9 +40,10 @@ def receive_message():
         for event in output['entry']:
             messaging = event['messaging']
             for message in messaging:
-                if message.get('postback'):
+                if message.get('quick_reply'):
                     recipient_id = message['sender']['id']
-                    postback_body = message['postback']['payload']
+                    #postback_body = message['postback']['payload']
+                    postback_body = message['quick_reply']['payload']
                     receive_postback(recipient_id, postback_body)
                     print('ps_id = ',recipient_id)
                     return 'Done'
