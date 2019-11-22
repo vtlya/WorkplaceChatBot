@@ -128,6 +128,8 @@ def receive_postback(recipient_id, postback_body):
         send_video(recipient_id, "583908779027614")
         return 'pass'
     elif postback_body == 'getsmart':
+        send_message(recipient_id,"Каждый сотрудник Леруа Мерлен должен получить корпоративный смартфон в течении недели после принятия на работу. Для оформления заявки на выдачу смартфона можно обратиться к своему руководителю, либо куратору мобильной платформы. Также заявку можно оформить на портале ITSM самостоятельно, прейдя по ссылке и следуя инструкции с картинке ниже.")
+        send_message(recipient_id,"Ссылка на портал ITSM: https://itsm.leroymerlin.ru/")
         send_image_by_id(recipient_id, "1229740157210291")
         return 'pass'
     elif postback_body == 'apps':
