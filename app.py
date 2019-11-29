@@ -178,7 +178,6 @@ def receive_postback(recipient_id, postback_body):
     elif postback_body == 'curator_info':
         send_message(recipient_id,
                      'Чтобы узнать, кто является куратором мобильной платформы, введи номер своего магазина.\nТвое сообщение не должно содержать посторонних символов, кроме номера магазина. Например:29')
-        redirect(url_for('receive_message_get_curator'))
         return 'pass'
     else:
         print('Cant recognize postback. Invalid postback')
