@@ -209,7 +209,7 @@ def receive_message_get_curator():
 
 def receive_curator(recipient_id, text):
     send_message(recipient_id, curator_info.get_curator(text))
-    redirect(url_for(''))
+    redirect(url_for('receive_message'))
     return 'pass'
 
 
