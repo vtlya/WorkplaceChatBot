@@ -189,7 +189,7 @@ def receive_postback(recipient_id, postback_body):
         return 'pass'
 
 
-@app.route('/curator_info', methods=['GET', 'POST'])
+@app.route('/receive_message_get_curator', methods=['GET', 'POST'])
 def receive_message_get_curator():
     if request.method == 'GET':
         token_sent = request.args['hub.verify_token']
@@ -206,7 +206,6 @@ def receive_message_get_curator():
                         receive_curator(recipient_id, text)
                         return 'Done'
     return 'OK'
-
 
 def receive_curator(recipient_id, text):
     send_message(recipient_id, curator_info.get_curator(text))
