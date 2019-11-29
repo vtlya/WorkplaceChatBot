@@ -9,11 +9,6 @@ import requests
 import attr
 from requests_toolbelt import MultipartEncoder
 
-# import enum
-# import pymessenger2
-# from pymessenger2 import utils
-# from pymessenger2.utils import AttrsEncoder
-
 app = Flask(__name__)
 
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
@@ -77,14 +72,16 @@ def receive_message():
 
 def receive_text_message(recipient_id, text):
     if text == 'Привет' or text == 'Здарова' or text == 'Добрый день' or text == 'Здарово' or text == 'привет' or text == 'здарова' or text == 'добрый день' or text == 'здарово' or text == 'ghbdtn' or text == 'Ghbdtn':
-        send_message(recipient_id, 'И тебе привет! Я могу помочь тебе разобраться с Мобильной платформой, а именно поделиться инструкциями как использовать приложение, узнать свежую информацию по мобильной платформе, котнаткы куратора твоего магазина и что делать в случае проблем с телефоном. На инструкции ниже показано как получить доступ к моему меню.')
+        send_message(recipient_id,
+                     'И тебе привет! Я могу помочь тебе разобраться с Мобильной платформой, а именно поделиться инструкциями как использовать приложение, узнать свежую информацию по мобильной платформе, котнаткы куратора твоего магазина и что делать в случае проблем с телефоном. На инструкции ниже показано как получить доступ к моему меню.')
         send_image_by_id(recipient_id, "735516596944436")
         return 'pass'
     elif text == 'Пока' or text == 'gjrf' or text == 'Gjrf' or text == 'пока':
         send_message(recipient_id, 'До встречи!')
     elif text == 'Как дела?' or text == 'rfr ltkf&' or text == 'Как дела' or text == 'как дела' or text == 'как дела?':
         send_message(recipient_id, 'Отлично! Надеюсь у тебя еще лучше 😉')
-    elif is_digit(text) and 2 < int(text) <= 176 : receive_curator(recipient_id, text)
+    elif is_digit(text) and 2 <= int(text) <= 176:
+        receive_curator(recipient_id, text)
     else:
         send_message(recipient_id,
                      "Я немогу распознать, что здесь написано:(\nПожалуйста, выбери нужный тебе пункт меню. Инструкция как открыть меню в картинке ниже:")
@@ -192,7 +189,7 @@ def receive_postback(recipient_id, postback_body):
 
 def is_digit(string):
     if string.isdigit():
-       return True
+        return True
     else:
         try:
             float(string)
@@ -200,11 +197,10 @@ def is_digit(string):
         except ValueError:
             return False
 
+
 def receive_curator(recipient_id, text):
     send_message(recipient_id, curator_info.get_curator(text))
-    redirect(url_for('receive_message'))
     return 'pass'
-
 
 
 def verify_fb_token(token_sent):
@@ -244,7 +240,6 @@ def send_image_by_id(recipient_id, image_id):
 def send_local_image(recepient_id, image_path):
     bot.send_image(recepient_id, image_path)
     return 'local image sent'
-
 
 
 if __name__ == '__main__':
