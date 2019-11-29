@@ -84,6 +84,7 @@ def receive_text_message(recipient_id, text):
         send_message(recipient_id, 'До встречи!')
     elif text == 'Как дела?' or text == 'rfr ltkf&' or text == 'Как дела' or text == 'как дела' or text == 'как дела?':
         send_message(recipient_id, 'Отлично! Надеюсь у тебя еще лучше 😉')
+    elif is_digit(text) and 2 < int(text) <= 176 : receive_curator(recipient_id, text)
     else:
         send_message(recipient_id,
                      "Я немогу распознать, что здесь написано:(\nПожалуйста, выбери нужный тебе пункт меню. Инструкция как открыть меню в картинке ниже:")
@@ -189,24 +190,15 @@ def receive_postback(recipient_id, postback_body):
         return 'pass'
 
 
-@app.route('/', methods=['GET', 'POST'])
-def receive_message_get_curator():
-    print('im here')
-    if request.method == 'GET':
-        token_sent = request.args['hub.verify_token']
-        return verify_fb_token(token_sent)
+def is_digit(string):
+    if string.isdigit():
+       return True
     else:
-        output = request.get_json(force=True)
-        for event in output['entry']:
-            messaging = event['messaging']
-            for message in messaging:
-                if message.get('message'):
-                    if message['message'].get('text'):
-                        recipient_id = message['sender']['id']
-                        text = message['message']['text']
-                        receive_curator(recipient_id, text)
-                        return 'Done'
-    return 'OK'
+        try:
+            float(string)
+            return True
+        except ValueError:
+            return False
 
 def receive_curator(recipient_id, text):
     send_message(recipient_id, curator_info.get_curator(text))
@@ -214,44 +206,6 @@ def receive_curator(recipient_id, text):
     return 'pass'
 
 
-# def delete_turn_file(recipient_id):
-#    os.remove('/turn/' + recipient_id + '.json')
-
-
-# def check_turn(recipient_id):
-#    file_path = os.path.join('turn\\', recipient_id + '.json')
-#    return os.path.exists(file_path)
-
-# def create_turn_file(recipient_id):
-#    file_path = os.path.join('turn\\', recipient_id + '.json')
-#    turn_file = open(file_path, 'a')
-#    turn_file.close()
-
-
-# def get_curent_action(recipient_id):
-#    file_path = os.path.join('turn\\', recipient_id + '.json')
-#    with open(file_path, 'r') as f:
-#        data = json.loads(f.read())
-#        if 'action_name' in data:
-#            action_name = data['action_name']
-#            return action_name
-#        else:
-#            return 'Err'
-
-
-# def get_curent_step(recipient_id, action_name):
-#    file_path = os.path.join('turn\\', recipient_id + '.json')
-#    with open(file_path, 'r') as f:
-#        data = json.loads(f.read())
-#        if action_name == 'NewPeopleRegistration':
-#            if data['will_people'] == True:
-#                curent_action = 'people_name'
-#            else:
-#                for key in data.keys():
-#                    if data[key] == None:
-#                        curent_action = str(key)
-#                        break
-#            return curent_action
 
 def verify_fb_token(token_sent):
     '''Сверяет токен, отправленный фейсбуком, с имеющимся у вас.
@@ -292,10 +246,6 @@ def send_local_image(recepient_id, image_path):
     return 'local image sent'
 
 
-# ef send_but(recipient_id, buts):
-#    '''Отправляет кнопки'''
-#    bot.send_button_message(recipient_id, "В какой раздел ты бы хотел перейти?", buts)
-#    return 'Success'
 
 if __name__ == '__main__':
     app.run()
