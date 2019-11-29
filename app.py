@@ -191,6 +191,7 @@ def receive_postback(recipient_id, postback_body):
 
 @app.route('/', methods=['GET', 'POST'])
 def receive_message_get_curator():
+    print('im here')
     if request.method == 'GET':
         token_sent = request.args['hub.verify_token']
         return verify_fb_token(token_sent)
