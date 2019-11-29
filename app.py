@@ -1,6 +1,7 @@
 import random
 from flask import Flask, request
 from bot2 import Bot
+import curator_receive
 from pymessenger import Element, Button
 import os
 import datetime
@@ -19,10 +20,10 @@ app = Flask(__name__)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
 
-DB = os.environ.get('DB')
-DB_USER = os.environ.get('DB_USER')
-DB_HOST = os.environ.get('DB_HOST')
-DB_PW = os.environ.get('DB_PW')
+#DB = os.environ.get('DB')
+#DB_USER = os.environ.get('DB_USER')
+#DB_HOST = os.environ.get('DB_HOST')
+#DB_PW = os.environ.get('DB_PW')
 
 
 bot = Bot(ACCESS_TOKEN)
@@ -172,24 +173,8 @@ def receive_postback(recipient_id, postback_body):
         send_image_by_id(recipient_id, "494079367985231")
         send_image_by_id(recipient_id, "772924719800076")
     elif postback_body == 'curator_info':
-        send_message(recipient_id, 'Чтобы узнать, кто является куратором мобильной платформы, введи номер своего магазина.\n Твое сообщение не должно содержать посторонних символов, кроме номера магазина - например:29')
-        @app.route('/', methods=['GET', 'POST'])
-        def receive_message_get_curator():
-            if request.method == 'GET':
-                token_sent = request.args['hub.verify_token']
-                return verify_fb_token(token_sent)
-            else:
-                output = request.get_json(force=True)
-                for event in output['entry']:
-                    messaging = event['messaging']
-                    for message in messaging:
-                        if message.get('message'):
-                            if message['message'].get('text'):
-                                recipient_id = message['sender']['id']
-                                text = message['message']['text']
-                                receive_curator(recipient_id, text)
-                                return 'Done'
-            return 'OK'
+        send_message(recipient_id, 'Чтобы узнать, кто является куратором мобильной платформы, введи номер своего магазина.\nТвое сообщение не должно содержать посторонних символов, кроме номера магазина. Например:29')
+        curator_receive.receive_message_get_curator()
         return 'pass'
     else:
         print('Cant recognize postback. Invalid postback')
