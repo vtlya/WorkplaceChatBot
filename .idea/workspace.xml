@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c05234e-b33a-4905-be23-1a162a31522d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/curator_receive.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curator_receive.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.curator_receive">
+  <component name="RunManager" selected="Python.app">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="WorkplaceChatBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,8 +147,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.curator_receive" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.curator_receive" />
         <item itemvalue="Python.bot2" />
         <item itemvalue="Python.qucikreplyElement" />
         <item itemvalue="Python.__init__" />
