@@ -177,10 +177,10 @@ def receive_postback(recipient_id, postback_body):
                                    'установленны через приложение Knox manage, следуя инструкции на картинке ниже.')
         send_image_by_id(recipient_id, "494079367985231")
         send_image_by_id(recipient_id, "772924719800076")
-    elif postback_body == 'receive_message_get_curator':
+    elif postback_body == 'curator_info':
         send_message(recipient_id,
                      'Чтобы узнать, кто является куратором мобильной платформы, введи номер своего магазина.\nТвое сообщение не должно содержать посторонних символов, кроме номера магазина. Например:29')
-        redirect(url_for('curator_info'))
+        redirect(url_for('receive_message_get_curator'))
         return 'pass'
     else:
         print('Cant recognize postback. Invalid postback')
