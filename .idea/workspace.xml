@@ -23,7 +23,7 @@
   </component>
   <component name="ProjectId" id="1RrtCtYONr39YOicpGNl9X89o3K" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app.py" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/psgtest" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -38,7 +38,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bot2">
+  <component name="RunManager" selected="Python.app">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="WorkplaceChatBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.bot2" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.bot2" />
         <item itemvalue="Python.qucikreplyElement" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.wpc-bot" />
