@@ -198,7 +198,7 @@ def is_digit(string):
 
 
 def receive_curator(recipient_id, text):
-    send_message(recipient_id, curator_info.get_curator(text))
+    send_message(recipient_id, str(curator_info.get_curator(text)))
     return 'pass'
 
 
