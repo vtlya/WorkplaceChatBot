@@ -81,8 +81,8 @@ def receive_text_message(recipient_id, text):
         send_message(recipient_id, 'До встречи!')
     elif text == 'Как дела?' or text == 'rfr ltkf&' or text == 'Как дела' or text == 'как дела' or text == 'как дела?':
         send_message(recipient_id, 'Отлично! Надеюсь у тебя еще лучше 😉')
-    elif is_digit(text) and (2 <= int(text) <= 176):
-        receive_curator(recipient_id, text)
+    #elif is_digit(text) and (2 <= int(text) <= 176):
+    #    receive_curator(recipient_id, text)
     else:
         send_message(recipient_id,
                      "Я немогу распознать, что здесь написано:(\nПожалуйста, выбери нужный тебе пункт меню. Инструкция как открыть меню в картинке ниже:")
