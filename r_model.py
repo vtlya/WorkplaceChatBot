@@ -18,7 +18,7 @@ class curator():  # (DB,DB_USER,DB_HOST,DB_PW):
                 if cursor != 0:
                     for row in cursor:
                         a = row
-                        b = 'Магазин: ' + a[0] + '\nКуратор: ' + a[1] + '\nПочта:   ' + a[3] + '\nТелефон: ' + a[4]
+                        b = str('Магазин: ' + a[0] + '\nКуратор: ' + a[1] + '\nПочта:   ' + a[3] + '\nТелефон: ' + a[4])
                         return b
         del conn
 
@@ -31,7 +31,7 @@ class curator():  # (DB,DB_USER,DB_HOST,DB_PW):
                 if cursor != 0:
                     for row in cursor:
                         a = row
-                        b = 'Магазин: ' + a[0] + '\nКуратор: ' + a[1] + '\nПочта:   ' + a[3] + '\nТелефон: ' + a[4]
+                        b = str('Магазин: ' + a[0] + '\nКуратор: ' + a[1] + '\nПочта:   ' + a[3] + '\nТелефон: ' + a[4])
                         return b
         del conn
 
