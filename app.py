@@ -40,6 +40,7 @@ def receive_message():
         f.close()
         for event in output['entry']:
             messaging = event['messaging']
+            print(output)
             for message in messaging:
                 if message.get('postback'):
                     recipient_id = message['sender']['id']
@@ -80,7 +81,7 @@ def receive_text_message(recipient_id, text):
         send_message(recipient_id, 'До встречи!')
     elif text == 'Как дела?' or text == 'rfr ltkf&' or text == 'Как дела' or text == 'как дела' or text == 'как дела?':
         send_message(recipient_id, 'Отлично! Надеюсь у тебя еще лучше 😉')
-    elif is_digit(text) and 2 <= int(text) <= 176:
+    elif is_digit(text) and (2 <= int(text) <= 176):
         receive_curator(recipient_id, text)
     else:
         send_message(recipient_id,
