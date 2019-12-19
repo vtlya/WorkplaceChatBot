@@ -23,7 +23,6 @@ bot = Bot(ACCESS_TOKEN)
 model = model(DB, DB_USER, DB_HOST, DB_PW)
 
 
-
 # Получать сообщения, посылаемые фейсбуком нашему боту мы будем в этом терминале вызова
 @app.route('/', methods=['GET', 'POST'])
 def receive_message():

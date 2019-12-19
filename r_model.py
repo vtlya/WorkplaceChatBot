@@ -2,7 +2,6 @@ import psycopg2
 from contextlib import closing
 import datetime
 
-
 class model():  # (DB,DB_USER,DB_HOST,DB_PW):
     def __init__(self, DB, DB_USER, DB_HOST, DB_PW):
         self.DB = DB
@@ -10,19 +9,17 @@ class model():  # (DB,DB_USER,DB_HOST,DB_PW):
         self.DB_HOST = DB_HOST
         self.DB_PW = DB_PW
 
+
     def curator_request(self, mag_number):
         with closing(psycopg2.connect(dbname=self.DB, user=self.DB_USER,
                                       password=self.DB_PW,
                                       host=self.DB_HOST)) as conn:
             with conn.cursor() as cursor:
-                cursor.execute(
-                    'SELECT mag_name, curator_name, grade, mail, phone FROM public.all_crs WHERE mag_number = %(mag_number)s',
-                    {'mag_number': mag_number})
+                cursor.execute('SELECT mag_name, curator_name, grade, mail, phone FROM public.all_crs WHERE mag_number = %(mag_number)s',{'mag_number': mag_number})
                 if cursor != 0:
                     for row in cursor:
                         a = row
-                        b = '{0}{1}{2}{3}{4}{5}{6}{7}'.format('Магазин: ', a[0], '\nКуратор: ', a[1], '\nПочта:   ',
-                                                              a[3], '\nТелефон: ', a[4])
+                        b = '{0}{1}{2}{3}{4}{5}{6}{7}'.format('Магазин: ', a[0], '\nКуратор: ', a[1], '\nПочта:   ', a[3], '\nТелефон: ', a[4])
                         return b
         del conn
 
@@ -31,16 +28,14 @@ class model():  # (DB,DB_USER,DB_HOST,DB_PW):
                                       password=self.DB_PW,
                                       host=self.DB_HOST)) as conn:
             with conn.cursor() as cursor:
-                cursor.execute(
-                    'SELECT mag_name, curator_name, grade, mail, phone FROM public.reg_crs WHERE region = %(region)s',
-                    {'region': region})
+                cursor.execute('SELECT mag_name, curator_name, grade, mail, phone FROM public.reg_crs WHERE region = %(region)s', {'region': region})
                 if cursor != 0:
                     for row in cursor:
                         a = row
-                        b = '{0}{1}{2}{3}{4}{5}{6}{7}'.format('Магазин: ', a[0], '\nКуратор: ', a[1], '\nПочта:   ',
-                                                              a[3], '\nТелефон: ', a[4])
+                        b = '{0}{1}{2}{3}{4}{5}{6}{7}'.format('Магазин: ', a[0] ,'\nКуратор: ' , a[1] , '\nПочта:   ' , a[3] , '\nТелефон: ' , a[4])
                         return b
         del conn
+
 
     def get_curator(self, mag_number):
         if self.curator_request(mag_number):
@@ -62,6 +57,7 @@ class model():  # (DB,DB_USER,DB_HOST,DB_PW):
                                       host=self.DB_HOST)) as conn:
             with conn.cursor() as cursor:
                 cursor.execute(
-                    'INSERT INTO public.statbot(recepient_id, event, datetime) VALUES (%(recepient_id)s, %(event)s, %(datetime)s);', {'recepient_id,': recepient_id, 'event': event, 'datetime': datetime.date.today()})
+                    'INSERT INTO public.statbot(recepient_id, event, datetime) VALUES (%(recepient_id)s, %(event)s, %(datetime)s);',
+                    {'recepient_id,': recepient_id, 'event': event, 'datetime': datetime.date.today()})
         del conn
         return 'success'
