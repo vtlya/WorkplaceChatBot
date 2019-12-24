@@ -57,7 +57,8 @@ class model():  # (DB,DB_USER,DB_HOST,DB_PW):
                                       host=self.DB_HOST)) as conn:
             with conn.cursor() as cursor:
                 cursor.execute(
-                    'INSERT INTO public.statbot(recepient_id, event, datetime) VALUES (%(recepient_id)s, %(event)s, %(datetime)s);',
-                    {'recepient_id,': recepient_id, 'event': event, 'datetime': datetime.date.today()})
+                    'INSERT INTO public.statbot(recepient_id, event, datetime) VALUES (%s, %s, %s);',
+                    (recepient_id, event, datetime.date.today()))
+                conn.commit()
         del conn
         return 'success'
