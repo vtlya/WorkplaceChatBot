@@ -94,6 +94,7 @@ def receive_postback(recipient_id, postback_body):
         return 'pass'
     elif postback_body == 'wifi':
         send_video(recipient_id, "486693275268886")
+        model.event(recipient_id, 'educations', 'wifi')
         return 'pass'
     elif postback_body == 'createBV':
         send_video(recipient_id, "423349031937094")

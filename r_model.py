@@ -51,14 +51,14 @@ class model():  # (DB,DB_USER,DB_HOST,DB_PW):
             b = ('Куратор не найден:(\nПожалуйста, проверь корректность отправленного номера магазина.')
             return b
 
-    def event(self, recepient_id, event):
+    def event(self, recepient_id, event, eventparam = 'NULL'):
         with closing(psycopg2.connect(dbname=self.DB, user=self.DB_USER,
                                       password=self.DB_PW,
                                       host=self.DB_HOST)) as conn:
             with conn.cursor() as cursor:
                 cursor.execute(
-                    'INSERT INTO public.statbot(recepient_id, event, datetime) VALUES (%s, %s, %s);',
-                    (recepient_id, event, datetime.date.today()))
+                    'INSERT INTO public.botstatistic(recepient_id, event, eventparam, datetime) VALUES (%s, %s, %s, %s);',
+                    (recepient_id, event, eventparam, datetime.date.today()))
                 conn.commit()
         del conn
         return 'success'
